@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="heade">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/841ebe7a2d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/default.css" th:href="@{/default.css}" />
+    <title th:text="${@environment.getProperty('application.name')} + ' | ' + ${module}">Document</title>
+</head>
+<body>
+    <header th:fragment="header">
+    </header>
+    <nav th:fragment="nav">
+       
+        <div>
+            <a href="#"><i class="fa-solid fa-shield-dog"></i></a>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-gamepad"></i></a></li>
+                <li class="nav-item"><a href="#" th:href="@{/users/}" ><i class="fa-solid fa-user-gear"></i></a></li>
+                <li class="nav-item"><a href="#" th:href="@{/h2/}" target="_blank"><i class="fa-solid fa-database"></i></a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-user-astronaut"></i></a></li>
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-gear"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="main">
+
+    </section>
+    <footer th:fragement="footer">
+        <div class="footer-left">
+            <p class="small-print" th:text="${@environment.getProperty('application.name')} + ' '
+                    + ${@environment.getProperty('application.system')} + ' ' 
+                    + ${@environment.getProperty('application.version')} + ' Application Mode: '
+                    + ${@environment.getProperty('application.mode')} + ' 2022 &copy '
+                    + ${@environment.getProperty('application.developer')}">
+                    Application Information
+            </p>
+        </div>
+        <div class="footer-right">
+            <p><a href="/h2/" target="_blank">Database</a></p>
+        </div>
+    </footer>
+</body>
+</html>

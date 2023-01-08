@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head head th:replace="template :: head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/default.css" th:href="@{/default.css}" />
+    <title>Document</title>
+</head>
+<body>
+    <header header th:replace="template :: header">
+    </header>
+    <nav nav th:replace="template :: nav">
+
+    </nav>
+    <section class="main">
+        <article>
+            <h1 th:text="${module}" class="module_header">Module Title</h1>
+            <div class="form">
+                <div>
+                    <button class="button-single-wide" type="button">
+                        <a href="#" th:href="@{add}"><i class="fa-solid fa-user-plus"></i> Create New User</a>
+                    </button>
+                </div>
+                <div>
+                    <form th:action="@{/users}" method="post">
+                        <input type="text" name="keyword" class="form-field"/>
+                        <input type="submit" value="Search" class="form-control-button"/>
+                    </form>
+
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>email</th>
+                        <th>controls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">0</td>
+                        <td th:text="${user.username}">username</td>
+                        <td th:text="${user.password}">password</td>
+                        <td th:text="${user.email}">email</td>
+                        <td >
+                            <div class="button-group">
+                                <button class="button" type="button"><a href="#" th:href="@{view/{id}(id=${user.id})}">View</a></button>
+                                <button class="button" type="button"><a href="#" th:href="@{edit/{id}(id=${user.id})}">Edit</a></button>
+                                <button class="button" type="button"><a href="#" th:href="@{delete/{id}(id=${user.id})}">Delete</a></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-foot">
+                <div>
+                    <span>
+                       <p>Page [[${currentPage}]] of [[${totalPages}]]</p> 
+                     </span>
+                </div>
+                <div>
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a href="#" th:href="@{'/users/users/' + ${i}}">
+                           [[${i}]]
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </article>
+        <aside>
+        </aside>
+    </section>
+    <footer th:replace="template :: footer">
+    </footer>
+</body>
+</html>
